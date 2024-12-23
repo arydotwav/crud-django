@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'css/output.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/nav-bar.css' %}">
+    <title>Tasks</title>
+</head>
+<body>
+    <header class="sticky top-0">
+        <nav class="flex justify-center items-center px-4 bg-[#ffffff9a] backdrop-blur-md z-100">
+            <div class="top-0 m-5 flex-1 flex justify-center">
+                <div class="flex-1"></div>
+                <ul class="flex space-x-5 mt-1">
+                    <li>
+                        <a class="capitalize rounded-lg p-2 hover:text-[#3a5e94da] text-black font-bold hover:bg-blue-200" href="{% url 'home' %}">home</a>                  
+                    <li>
+                        {% if user.is_authenticated %}
+                            <a class="capitalize rounded-lg p-2 hover:text-[#3a5e94da] text-black font-bold hover:bg-blue-200" href="{% url 'tasks' %}">tasks</a>
+                        {% else %}
+                            <a class="capitalize rounded-lg p-2 hover:text-[#3a5e94da] text-black font-bold hover:bg-blue-200" href="{% url 'sign_up' %}">tasks</a>
+                        {% endif %}
+                    </li>
+                    <li>
+                        {% if user.is_authenticated %}
+                            <a class="capitalize hover:text-[#3a5e94da] rounded-lg transition-all p-2 text-black font-bold hover:bg-blue-200" href="{% url 'create' %}">create</a>
+                        {% endif %}
+                    </li>
+                </ul>
+                <div class="flex-1 flex justify-end">
+                    {% if user.is_authenticated %}
+                        <!-- <a class="capitalize text-xs p-2 border hover:bg-red-700 border-red-600 rounded-lg bg-red-500 text-white font-bold" href="{% url 'logout' %}">log out</a> -->
+                         <a class="hover:bg-red-400 content-center p-2 bg-red-500 rounded-lg" href="{% url 'logout' %}">
+                            <svg class="w-4 h-4 text-red-900" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                            </svg>
+                         </a>
+                    {% else %}
+                    <a class="hover:bg-green-400 content-center p-2 bg-green-500 rounded-lg" href="{% url 'signin' %}">
+                        <svg class="w-4 h-4 text-green-900" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                        </svg>
+                     </a>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+    </header>
+    {% block content %}
+    <div class="brightness-50" id="fondo-blur"></div>
+    {% endblock%}
+</body>
+</html>

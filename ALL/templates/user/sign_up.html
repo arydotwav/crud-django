@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks</title>
+</head>
+<body>
+    {% include 'navbar.html' %}
+    {% block content %}
+    <div class="h-screen flex justify-center items-center content-center">
+        <div class="flex flex-col items-center justify-center h-[33em] w-[30em] bg-white rounded-lg max-[500px]:w-[22em] max-[500px]:h-[28em] max-[500px]:text-sm max-[500px]:p-5">
+            <form action="" method="POST">
+                <h1 class="text-4xl font-semibold mb-4 text-center max-[500]:text-2xl max-[500px]:mb-3">Sign up!</h1>
+                {% if error %}
+                <div class="max-[500px]:w-6 flex justify-center">
+                    <div class="flex items-center flex-row rounded-lg text-red-600 border bg-red-300 border-red-600 p-1 text-sm">
+                        <svg class="flex-shrink-0 inline w-4 h-4 m-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                          </svg>
+                          <p class=" font-semibold">{{error}}</p>
+                    </div>
+                </div>
+                {% endif %}
+                {% csrf_token %}
+                <div class="p-2 m-4">
+                    <p class="m-2">{{form.username}}</p>
+                    <p class="m-2">{{form.password1}}</p>
+                    <p class="m-2">{{form.password2}}</p>                   
+                </div>
+                <div class="flex justify-center w-[100%]">
+                    <button
+                        class="mb-5 p-2 rounded-lg text-whiterounded-lg text-white bg-blue-600 hover:bg-blue-400 border w-[84%] font-bold text-center"
+                        type="submit">
+                        Sign up
+                    </button>
+                </div>
+            </form>
+            <p>Already have an account? <a class="underline hover:text-gray-500 text-gray-400 font-semibold" href="{% url 'signin' %}">Log in!</a></p>
+        </div>
+    </div>
+    <p>have an account? <a href="{% url 'signin' %}">log in!</a></p>
+    {% endblock %}
+</body>
+</html>

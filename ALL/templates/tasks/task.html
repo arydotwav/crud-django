@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks</title>
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="flex justify-center w-full mt-6">
+        <div class="hover:sombra p-4 rounded-lg bg-gray-200 text-black hover:bg-gray-300 hover:border hover:border-[#9b9b9b93] transition-all w-[400px] overflow-auto">
+            <p class="font-bold text-black-50 text-xl">{{ task.title }}</p>
+            <p class="text-sm">{{ task.content }}</p>
+            <p class="text-xs text-gray-500 font-semibold">{{ task.user }}</p>
+            
+            {% if task.completed %}
+                <p class="text-green-800 font-semibold text-xs bg-green-300 p-1 rounded-full mt-2 w-[4em] text-center">Done</p>
+            {% else %}
+                <p class="text-red-800 font-semibold text-xs bg-red-300 p-1 rounded-full mt-2 w-[6em] text-center">Not done</p>
+            {% endif %}
+            
+            <div class="my-4">
+                <a class="text-white font-bold text-sm px-5 py-2.5 me-2 mb-2 border-blue-800 hover:bg-blue-200 p-2 bg-blue-400 rounded-lg my-4 focus:outline-none focus:ring-4 focus:ring-blue-300 transition" href="{% url 'task' task.id %}">Edit</a>
+            </div>
+            
+            <div class="text-xs opacity-75 mt-4">
+                {{ task.date_of_creation }}
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
